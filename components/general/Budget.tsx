@@ -19,13 +19,13 @@ export const Budget = ({ products }: any) => {
         setFindBestCombination(result);
     };
     return (
-        <div className="bg-slate-800 w-[80%] p-4">
+        <div className="bg-slate-800 w-[80%] p-4 flex flex-col gap-y-4">
             <h1>Los mejores productos a tu precio ideal</h1>
-            <label>
+            <label className="flex flex-col gap-y-2">
                 Digita tu presupuesto:
-                <input type="number" value={budget} onChange={handleBudgetValueChange} />
+                <input type="number" className="text-gray-800" value={budget} onChange={handleBudgetValueChange} />
             </label>
-            <button onClick={handleBudgetChange}>Buscar</button>
+            <button className="bg-gray-600 hover:bg-gray-500 p-2 rounded-lg" onClick={handleBudgetChange}>Buscar</button>
             <h2>Productos encontrados:</h2>
             <ul>
                 {

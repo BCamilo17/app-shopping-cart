@@ -33,7 +33,7 @@ export const Products = () => {
         }
     }
     return (
-        <div className="grid grid-cols-3 gap-4">
+        <div className="flex flex-col gap-y-4 sm:flex sm:flex-row sm:gap-12">
             {products?.map((product) => (
                 <Card 
                     id={product.id}

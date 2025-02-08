@@ -1,6 +1,6 @@
 'use client';
 import React from "react"
-import { getAllCart } from "@/app/services";
+import { deleteCart, getAllCart } from "@/app/services";
 import { Product } from "@/app/types/intex";
 import { useEffect, useState } from "react";
 
@@ -21,7 +21,18 @@ export const Cart = ({setShowModal}:CartProps) => {
             }
             fetchCart();
         }, []);
-
+const handleRemoveCart = async (productId: number) => {
+        try {
+            const response = await deleteCart(productId);
+            if (response) {
+                const updatedCart = await getAllCart();
+                setCart(updatedCart.cart);
+            }
+        }
+        catch (e) {
+            console.error(e);
+        }
+    }
     return (
         <div>
                 <div className="fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 flex justify-center items-center">
@@ -35,6 +46,7 @@ export const Cart = ({setShowModal}:CartProps) => {
                                 <div key={key} className="flex justify-around text-gray-800 items-center">
                                     <span>{product.name}</span>
                                     <span>{product.price}$</span>
+                                    <button className="" onClick={()=>{handleRemoveCart(product.id)}}> borrar</button>
                                 </div>
                             ))}
                         </div>
